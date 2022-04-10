@@ -2,12 +2,15 @@
 import {useSelector} from 'react-redux';
 //import funkcji zmieniajacych stan
 import {useDispatch} from 'react-redux';
-import {removeBook} from '../../redux/booksRedux';
+import {getAllBooks, removeBook} from '../../redux/booksRedux';
 
 const BookList = () => {
-  // pobranie ze stanu obiektu books
-  const books = useSelector((state) => state.books);
-  //"aktywowanie" funkcji zmieniajacych stan
+  // pobranie informacji ze stanu
+  // const books = useSelector((state) => state.books);
+  //pobieranie ze stanu przy urzyci funkcji "filtra"
+  const books = useSelector((state) => getAllBooks(state));
+
+  //funkcja pośrednia do edycji stanu
   const dispatch = useDispatch();
 
   const handleClick = (bookId) => {

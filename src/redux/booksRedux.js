@@ -1,4 +1,5 @@
 // selectors
+export const getAllBooks = ({books}) => books;
 
 //action names
 const createActionName = (name) => `app/books/${name}`;
