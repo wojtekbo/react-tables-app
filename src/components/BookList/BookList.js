@@ -2,6 +2,7 @@
 import {useSelector} from 'react-redux';
 //import funkcji zmieniajacych stan
 import {useDispatch} from 'react-redux';
+import {removeBook} from '../../redux/booksRedux';
 
 const BookList = () => {
   // pobranie ze stanu obiektu books
@@ -9,8 +10,8 @@ const BookList = () => {
   //"aktywowanie" funkcji zmieniajacych stan
   const dispatch = useDispatch();
 
-  const removeBook = (bookId) => {
-    dispatch({type: 'REMOVE_BOOK', payload: bookId});
+  const handleClick = (bookId) => {
+    dispatch(removeBook(bookId));
   };
 
   return (
@@ -18,7 +19,7 @@ const BookList = () => {
       {books.map((book) => {
         return (
           <li key={book.id}>
-            {book.title} by {book.author} <button onClick={() => removeBook(book.id)}>X</button>
+            {book.title} by {book.author} <button onClick={() => handleClick(book.id)}>X</button>
           </li>
         );
       })}

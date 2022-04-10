@@ -1,25 +1,11 @@
-import {createStore} from 'redux';
+import {createStore, combineReducers} from 'redux';
+import initialState from './initialState';
+import booksReducer from './booksRedux';
 
 // funkcja do modyfikacji magazynu
-const reducer = (state, action) => {
-  switch (action.type) {
-    case 'REMOVE_BOOK':
-      return {...state, books: state.books.filter((book) => book.id !== action.payload)};
-    case 'ADD_BOOK':
-      return {...state, books: [...state.books, action.payload]};
-    default:
-      // w innym wypadku zwroc stan bez zmian
-      return state;
-  }
-};
-
-//dane startowe magazynu
-const initialState = {
-  books: [
-    {id: 1, title: 'The Witcher', author: 'Andrzej Sapkowski'},
-    {id: 2, title: 'Moje zasady', author: 'Wojciech Borkowski'},
-  ],
-};
+const reducer = combineReducers({
+  books: booksReducer,
+});
 
 const store = createStore(
   //referencja do funkcji odpowiedzialnej za modyfikacje magazynu
