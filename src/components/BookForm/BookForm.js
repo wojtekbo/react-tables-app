@@ -1,12 +1,17 @@
 import React from 'react';
 import {useState} from 'react';
+//import funkcji zmieniajacych stan
+import {useDispatch} from 'react-redux';
+import shortid from 'shortid';
 
-const BookForm = ({addBook}) => {
+const BookForm = () => {
   const [title, setTitle] = useState('');
   const [author, setAuthor] = useState('');
+  const dispatch = useDispatch();
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    addBook({title, author});
+    dispatch({type: 'ADD_BOOK', payload: {id: shortid(), title, author}});
     setTitle('');
     setAuthor('');
   };
