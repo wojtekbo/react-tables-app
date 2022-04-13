@@ -1,6 +1,7 @@
-import {createStore, combineReducers} from 'redux';
+import {createStore, combineReducers, applyMiddleware, compose} from 'redux';
 import initialState from './initialState';
 import booksReducer from './booksRedux';
+import thunk from 'redux-thunk';
 
 // funkcja do modyfikacji magazynu
 const reducer = combineReducers({
@@ -12,8 +13,11 @@ const store = createStore(
   reducer,
   //wskazanie danych startowych magazynu
   initialState,
-  //wpis do wtyczki w chrome
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+  compose(
+    applyMiddleware(thunk),
+    //wpis do wtyczki w chrome
+    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+  )
 );
 
 export default store;

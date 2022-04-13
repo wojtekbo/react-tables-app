@@ -3,7 +3,7 @@ import {useState} from 'react';
 //import funkcji zmieniajacych stan
 import {useDispatch} from 'react-redux';
 import shortid from 'shortid';
-import {addBook} from '../../redux/booksRedux';
+import {addBookRequest} from '../../redux/booksRedux';
 
 const BookForm = () => {
   const [title, setTitle] = useState('');
@@ -12,7 +12,7 @@ const BookForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(addBook({id: shortid(), title, author}));
+    dispatch(addBookRequest({id: shortid(), title, author}));
     setTitle('');
     setAuthor('');
   };
