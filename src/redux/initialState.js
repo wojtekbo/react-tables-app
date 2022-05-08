@@ -1,6 +1,7 @@
 //dane startowe magazynu
 const initialState = {
-  books: [],
+  statuses: ['Free', 'Reserved', 'Busy', 'Cleaning'],
+  tables: [],
 };
 
 export default initialState;

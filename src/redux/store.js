@@ -1,12 +1,15 @@
 import {createStore, combineReducers, applyMiddleware, compose} from 'redux';
-import initialState from './initialState';
-import booksReducer from './booksRedux';
 import thunk from 'redux-thunk';
+import initialState from './initialState';
+import tablesReducer from './tablesRedux';
+import statusesReducer from './statusesRedux';
 
-// funkcja do modyfikacji magazynu
-const reducer = combineReducers({
-  books: booksReducer,
-});
+const subreducers = {
+  tables: tablesReducer,
+  statuses: statusesReducer,
+};
+
+const reducer = combineReducers(subreducers);
 
 const store = createStore(
   //referencja do funkcji odpowiedzialnej za modyfikacje magazynu
