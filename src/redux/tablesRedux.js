@@ -27,8 +27,10 @@ export const editTable = table => {
     },
     body: JSON.stringify(table),
   };
-  return dispatch => {
-    fetch(url, options).then(() => fetchTables());
+  return () => {
+    fetch(url, options)
+      .then(response => response.json())
+      .then(fetchTables());
   };
 };
 
