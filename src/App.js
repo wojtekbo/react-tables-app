@@ -14,7 +14,6 @@ const App = () => {
   const dispatch = useDispatch();
   useEffect(() => dispatch(fetchTables()), [dispatch]);
   const tables = useSelector(state => getAllTables(state));
-
   if (tables.length === 0) return <PageLoader info="Loading tables data" />;
   else
     return (
