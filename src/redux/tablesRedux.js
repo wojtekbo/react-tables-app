@@ -1,4 +1,4 @@
-import {API_URL} from '../config.js';
+import {API_URL} from '../config';
 
 //selectors
 export const getAllTables = ({tables}) => tables;
@@ -15,14 +15,14 @@ export const updateTable = payload => ({type: UPDATE_TABLE, payload});
 
 export const fetchTables = () => {
   return dispatch => {
-    fetch(API_URL + '/tables')
+    fetch(`${API_URL}/tables`)
       .then(response => response.json())
       .then(tables => dispatch(updateTables(tables)));
   };
 };
 
 export const editTable = table => {
-  const url = API_URL + '/tables/' + table.id;
+  const url = `${API_URL}/tables/${table.id}`;
   const options = {
     method: 'PUT',
     headers: {
@@ -33,7 +33,7 @@ export const editTable = table => {
   return dispatch => {
     fetch(url, options)
       .then(response => response.json())
-      .then(table => dispatch(updateTable(table)));
+      .then(() => dispatch(updateTable(table)));
   };
 };
 
