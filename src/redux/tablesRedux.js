@@ -10,6 +10,7 @@ const UPDATE_TABLES = createActionName('UPDATE_TABLES');
 
 // action creators
 export const updateTables = payload => ({type: UPDATE_TABLES, payload});
+
 export const fetchTables = () => {
   return dispatch => {
     fetch(API_URL + '/tables')
@@ -27,10 +28,10 @@ export const editTable = table => {
     },
     body: JSON.stringify(table),
   };
-  return () => {
+  return dispatch => {
     fetch(url, options)
       .then(response => response.json())
-      .then(fetchTables());
+      .then(dispatch(fetchTables()));
   };
 };
 
